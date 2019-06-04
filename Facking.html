@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faking Textarea on Typing</title>
+    <script>
+        let text = "I am Batman!!!";
+        let textCharAt = [];
+        let textOnArea = "";
+        for (let i = 0; i < text.length; i++) {
+            textCharAt.push(text.charAt(i));
+        }
+
+        function typeTextArea() {
+            let text_On = document.form_text.txt.value;
+            let lengt = text_On.length;
+            if (lengt > 0) {
+                for (let i = 0; i <= lengt - 1; i++) {
+                    textOnArea += textCharAt[i];
+                    if (i == textCharAt.length) {
+                        document.form_text.txt.value = "";
+                        textOnArea = "";
+                    }
+                }
+            }
+            document.form_text.txt.value = textOnArea;
+            textOnArea = "";
+            setTimeout("typeTextArea()", 1);
+        }
+    </script>
+</head>
+<body>
+<center>
+    <H1>Textarea on Typing</H1>
+    <form name="form_text">
+        <textarea name="txt" cols="80" rows="20" onkeydown="typeTextArea();"></textarea>
+    </form>
+</center>
+</body>
+</html>
